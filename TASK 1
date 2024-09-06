@@ -1,0 +1,50 @@
+def caesar_cipher(text, shift):
+  """Encrypts or decrypts a text using the Caesar Cipher algorithm.
+
+  Args:
+    text: The text to be encrypted or decrypted.
+    shift: The number of positions to shift the letters.
+
+  Returns:
+    The encrypted or decrypted text.
+  """
+
+  result = ""
+  for char in text:
+    if char.isalpha():
+      # Determine the starting index of the alphabet
+      if char.isupper():
+        start = ord('A')
+      else:
+        start = ord('a')
+
+      # Calculate the new index
+      new_index = (ord(char) - start + shift) % 26 + start
+
+      # Convert the new index to a character
+      result += chr(new_index)
+    else:
+      result += char
+  return result
+
+def main():
+  while True:
+    choice = input("Choose an option:\n1. Encrypt\n2. Decrypt\n3. Exit\n")
+
+    if choice == '1':
+      text = input("Enter the text to encrypt: ")
+      shift = int(input("Enter the shift value: "))g
+      encrypted_text = caesar_cipher(text, shift)
+      print("Encrypted text:", encrypted_text)
+    elif choice == '2':
+      text = input("Enter the text to decrypt: ")
+      shift = int(input("Enter the shift value: "))
+      decrypted_text = caesar_cipher(text, -shift)
+      print("Decrypted text:", decrypted_text)
+    elif choice == '3':
+      break
+    else:
+      print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+  main()
